@@ -12,6 +12,8 @@ import DestinationsTours from './components/Destination-Tours'
 import ContactTrust from './components/ContactTrust'
 import AboutOwner from './components/AboutOwner'
 
+import MediaProof from './components/MediaProof'
+
 function App() {
   return (
     <div className="min-h-screen">
@@ -23,6 +25,7 @@ function App() {
       <UmrahPlansSection />
       <RamadanSection />
       <HajjSection />
+      <MediaProof />
       <TestimonialsSection />
       {/* <BookingContactSection /> */}
       <ContactTrust />
