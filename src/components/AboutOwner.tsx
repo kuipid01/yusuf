@@ -49,7 +49,7 @@ export default function AboutOwner() {
                     <div className="flex justify-center">
                         <div className="relative w-80 h-96 rounded-2xl overflow-hidden shadow-2xl border-8 border-white">
                             <img
-                                src="/public/ceo.jpg"
+                                src="/ceo.jpg"
                                 alt="Alhaji Abdul Mojeed Oladele Yusuff - CEO"
                                 className="object-cover"
                             />
