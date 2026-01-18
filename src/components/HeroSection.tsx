@@ -1,6 +1,5 @@
 import React from 'react';
-import Badge from './Badge';
-import StatCard from './StatCard';
+
 import TrustBadge from './TrustBadge';
 
 const HeroSection: React.FC = () => {
