@@ -42,10 +42,10 @@ const HeroSection: React.FC = () => {
                             </a >
                         </div>
 
-                        <TrustBadge
+                        {/* <TrustBadge
                             avatars={clientAvatars}
                             text="Trusted by 5000+ Happy Pilgrims"
-                        />
+                        /> */}
                     </div>
 
                     {/* Right Content - Image with Stats */}

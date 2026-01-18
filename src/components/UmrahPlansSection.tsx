@@ -5,6 +5,7 @@ interface Plan {
     title: string;
     description: string;
     price: string;
+    price2?: string;
     icon: string;
     isPopular?: boolean;
     buttonVariant: 'solid' | 'outline';
@@ -14,51 +15,57 @@ interface Plan {
 const plans: Plan[] = [
     {
         id: 1,
-        title: "Basic Pilgrimage",
-        description: "Essential services for a focused and spiritually rewarding Umrah journey.",
-        price: "4,000,000",
-        icon: "✈️",
+        title: "Basic Package",
+        description: "Affordable spiritual journey with shared accommodation and essential services.",
+        price: "3,999,000 (4/Room)",
+        price2: "4,350,000 (2/Room)",
+        icon: "🌙",
         buttonVariant: 'solid',
         features: [
-            "Visa Documentation",
-            "Standard Flight",
-            "Group Transportation",
-            "Standard Hotel Stay",
-            "Religious Orientation",
-            "24/7 Support"
+            "Umra Visa",
+            "Economy Flight Ticket",
+            "Hotel Accommodation",
+            "Daily Breakfast & Dinner",
+            "Shared Transportation",
+            "Historical Sites Visit",
+            "Grand Lectures"
         ]
     },
     {
         id: 2,
-        title: "Flexi-Pay Umrah",
-        description: "Our popular Pay-Small-Small option designed for stress-free planning.",
-        price: "6,000,000",
-        icon: "💳",
+        title: "Standard Package",
+        description: "Balanced comfort with improved accommodation options.",
+        price: "4,450,000 (4/Room)",
+        price2: "4,700,000 (2/Room)",
+        icon: "🕌",
         isPopular: true,
         buttonVariant: 'outline',
         features: [
-            "Installment Payments",
-            "Better Flight Options",
-            "Guided Haram Tours",
-            "Stay Near the Square",
-            "Halal Meals Included",
-            "Personal Consultant"
+            "Umra Visa",
+            "Economy Flight Ticket",
+            "Standard Hotel Stay",
+            "Daily Breakfast & Dinner",
+            "Shared Transportation",
+            "Historical Sites Visit",
+            "Grand Lectures"
         ]
     },
     {
         id: 3,
-        title: "Premium Executive",
-        description: "Highest standard of comfort, safety, and personalized assistance.",
-        price: "8,500,000",
+        title: "Gold Package",
+        description: "Premium 5-Star experience for maximum comfort and proximity.",
+        price: "5,450,000 (4/Room)",
+        price2: "6,200,000 (2/Room)",
         icon: "🌟",
         buttonVariant: 'solid',
         features: [
-            "VIP Fast-Track Visa",
-            "Business Class Flight",
-            "Private VIP Car",
-            "5-Star Hotel Stay",
-            "Private Spiritual Guide",
-            "Exclusive Ground Support"
+            "Umra Visa",
+            "Economy Flight Ticket",
+            "5-Star Hotel Accommodation",
+            "Daily Breakfast & Dinner",
+            "Shared Transportation",
+            "Historical Sites Visit",
+            "Grand Lectures"
         ]
     }
 ];
@@ -78,19 +85,30 @@ const PlanCard: React.FC<{ plan: Plan }> = ({ plan }) => {
                 {plan.description}
             </p>
 
-            <div className="mb-8">
-                <p className="text-blue-600 text-[10px] font-black uppercase tracking-widest mb-1">Estimated Cost</p>
-                <div className="flex items-baseline gap-1">
-                    <span className="text-xl font-bold text-gray-900">₦</span>
-                    <span className="text-4xl font-black text-gray-900">{plan.price}</span>
+            <div className="mb-8 space-y-2">
+                <div>
+                    <p className="text-blue-600 text-[10px] font-black uppercase tracking-widest mb-1">Price (4 in a room)</p>
+                    <div className="flex items-baseline gap-1">
+                        <span className="text-xl font-bold text-gray-900">₦</span>
+                        <span className="text-2xl font-black text-gray-900">{plan.price.split(' ')[0]}</span>
+                    </div>
                 </div>
+                {plan.price2 && (
+                    <div>
+                        <p className="text-blue-600 text-[10px] font-black uppercase tracking-widest mb-1">Price (2 in a room)</p>
+                        <div className="flex items-baseline gap-1">
+                            <span className="text-xl font-bold text-gray-900">₦</span>
+                            <span className="text-2xl font-black text-gray-900">{plan.price2.split(' ')[0]}</span>
+                        </div>
+                    </div>
+                )}
             </div>
 
             <button className={`w-full py-5 rounded-2xl font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 transition-all mb-8 ${plan.buttonVariant === 'solid'
-                    ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-xl shadow-blue-100'
-                    : 'border-2 border-blue-600 text-blue-600 hover:bg-blue-50'
+                ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-xl shadow-blue-100'
+                : 'border-2 border-blue-600 text-blue-600 hover:bg-blue-50'
                 }`}>
-                Reserve My Spot
+                Book This Package
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7-7 7" />
                 </svg>
@@ -115,19 +133,19 @@ const PlanCard: React.FC<{ plan: Plan }> = ({ plan }) => {
 
 const UmrahPlansSection: React.FC = () => {
     return (
-        <section className="py-24 bg-blue-50/20">
+        <section id="packages" className="py-24 bg-blue-50/20">
             <div className="container mx-auto px-6">
                 {/* Section Header */}
                 <div className="text-center max-w-3xl mx-auto mb-20 space-y-4">
                     <div className="inline-block px-4 py-1.5 rounded-full border border-blue-100 bg-white text-[10px] font-bold text-blue-600 uppercase tracking-widest">
-                        Umrah Planning
+                        August - November 2026
                     </div>
                     <h2 className="text-4xl lg:text-5xl font-black text-gray-900">
-                        Flexible Payment <br />
-                        <span className="text-blue-600">Stress-Free</span> Planning
+                        Umrah Packages <br />
+                        <span className="text-blue-600">2026 Season</span>
                     </h2>
                     <p className="text-gray-500 text-sm leading-relaxed italic">
-                        Don't let finances delay your spiritual goals. Start with our <span className="text-blue-600 font-black">Pay-Small-Small</span> plan today.
+                        Join us for a spiritually uplifting journey. Secure your spot for August, September, October, or November 2026.
                     </p>
                 </div>
 

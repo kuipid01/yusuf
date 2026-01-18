@@ -19,7 +19,7 @@ const AboutSection: React.FC = () => {
                     <div className="relative">
                         <div className="relative rounded-4xl overflow-hidden shadow-2xl transform -rotate-2 hover:rotate-0 transition-transform duration-500">
                             <img
-                                src="https://images.unsplash.com/photo-1565019054316-0158df8a28e4?q=80&w=1000&auto=format&fit=crop"
+                                src="/ceo2.jpg"
                                 alt="About AL-YUSUFF"
                                 className="w-full h-full object-cover"
                             />
@@ -38,7 +38,7 @@ const AboutSection: React.FC = () => {
                             {/* Bottom Card */}
                             <div className="absolute bottom-8 left-8 bg-white rounded-2xl p-4 shadow-xl flex items-center gap-3 transform translate-y-4 hover:translate-y-0 transition-transform">
                                 <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center overflow-hidden">
-                                    <img src="https://i.pravatar.cc/150?img=12" alt="Avatar" className="w-full h-full object-cover" />
+                                    <img src="/ceo.jog" alt="Avatar" className="w-full h-full object-cover" />
                                 </div>
                                 <div>
                                     <h4 className="font-bold text-gray-900 text-sm">Yusuf A.</h4>

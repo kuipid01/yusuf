@@ -1,8 +1,9 @@
 import Header from './components/Header'
 import HeroSection from './components/HeroSection'
 import AboutSection from './components/AboutSection'
-import PackagesSection from './components/PackagesSection'
 import UmrahPlansSection from './components/UmrahPlansSection'
+import HajjSection from './components/HajjSection'
+import RamadanSection from './components/RamadanSection'
 import TestimonialsSection from './components/TestimonialsSection'
 import Footer from './components/Footer'
 import './App.css'
@@ -19,8 +20,9 @@ function App() {
       <AboutSection />
       <ServicesPackages />
       <DestinationsTours />
-      <PackagesSection />
       <UmrahPlansSection />
+      <RamadanSection />
+      <HajjSection />
       <TestimonialsSection />
       {/* <BookingContactSection /> */}
       <ContactTrust />

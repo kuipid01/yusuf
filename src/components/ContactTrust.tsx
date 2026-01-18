@@ -171,24 +171,29 @@ export default function ContactTrust() {
                     <div className="grid md:grid-cols-2 gap-8 mb-12">
                         <div className="p-8 rounded-lg border bg-blue-50">
                             <Phone className="text-blue-600 mb-3" />
-                            <a href="tel:+2348035124441">+234 803 512 4441</a><br />
-                            <a href="tel:+2348089299201">+234 808 929 9201</a>
+                            <a href="tel:+2348035124441" className="block font-bold">08035124441 (Whatsapp)</a>
+                            <a href="tel:+2348089299201" className="block font-bold">08089299201 (Whatsapp)</a>
+                            <a href="tel:+2348186407509" className="block font-bold">08186407509</a>
                         </div>
 
                         <div className="p-8 rounded-lg border bg-blue-50">
                             <Mail className="text-blue-600 mb-3" />
-                            <a href="mailto:Alyusufftravels@yahoo.com">
+                            <a href="mailto:Alyusufftravels@yahoo.com" className="font-bold">
                                 Alyusufftravels@yahoo.com
                             </a>
+                            <div className="mt-4 pt-4 border-t border-blue-200">
+                                <p className="text-xs uppercase text-blue-600 font-bold mb-1">Company Account</p>
+                                <p className="font-bold">LOTUS BANK</p>
+                                <p className="font-mono text-lg">1000059454</p>
+                            </div>
                         </div>
                     </div>
 
                     {/* Address */}
                     <div className="p-8 rounded-lg border bg-green-50 mb-12">
                         <MapPin className="text-green-600 mb-3" />
-                        <p>
-                            50, Ishaga Road Off Owodele Bus Stop,
-                            LUTH Teaching Hospital Road, Surulere, Lagos
+                        <p className="font-bold">
+                            50, ISHAGA ROAD SURULERE LAGOS
                         </p>
                     </div>
 

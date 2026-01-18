@@ -139,9 +139,13 @@ const Footer: React.FC = () => {
                         </h4>
 
                         <div className="space-y-6 text-xs text-slate-400">
-                            <div className="flex gap-4 items-center">
-                                <Phone className="w-5 h-5 text-blue-600" />
-                                <p className="font-bold">+234 808 929 9201</p>
+                            <div className="flex gap-4 items-start">
+                                <Phone className="w-5 h-5 text-blue-600 shrink-0" />
+                                <div className="space-y-1">
+                                    <p className="font-bold">08089299201 (WhatsApp)</p>
+                                    <p className="font-bold">08035124441 (WhatsApp)</p>
+                                    <p className="font-bold">08186407509</p>
+                                </div>
                             </div>
 
                             <div className="flex gap-4 items-center">
@@ -153,7 +157,16 @@ const Footer: React.FC = () => {
 
                             <div className="flex gap-4">
                                 <MapPin className="w-5 h-5 text-blue-600" />
-                                <p>Nigeria · International Coverage</p>
+                                <p>50, ISHAGA ROAD SURULERE LAGOS</p>
+                            </div>
+
+                            <div className="flex gap-4 items-start pt-4 border-t border-white/10">
+                                <div className="w-5 h-5 text-blue-600 font-black">₦</div>
+                                <div>
+                                    <p className="font-bold text-white">LOTUS BANK</p>
+                                    <p className="font-mono text-blue-400">1000059454</p>
+                                    <p className="text-[10px] uppercase mt-1">AL- YUSUFF INTERNATIONAL TRAVELS AND TOURS LTD</p>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -163,7 +176,7 @@ const Footer: React.FC = () => {
             {/* Bottom Bar */}
             <div className="border-t border-white/5 py-10 bg-black/20 text-center">
                 <p className="text-[10px] font-bold text-slate-600 uppercase tracking-[0.2em]">
-                    AL-YUSUFF INTERNATIONAL TRAVELS AND TOURS LTD © 2026
+                    AL- YUSUFF INTERNATIONAL TRAVELS AND TOURS LTD © 2026
                 </p>
             </div>
         </footer>
