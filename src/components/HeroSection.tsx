@@ -12,7 +12,7 @@ const HeroSection: React.FC = () => {
     ];
 
     return (
-        <section className="min-h-screen pt-24 pb-12 bg-linear-to-br from-blue-50 via-white to-blue-50/40 relative overflow-hidden">
+        <section id="home" className="min-h-screen pt-24 pb-12 bg-linear-to-br from-blue-50 via-white to-blue-50/40 relative overflow-hidden">
             <div className="container mx-auto px-6">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     {/* Left Content */}
@@ -110,7 +110,7 @@ const HeroSection: React.FC = () => {
 
             {/* WhatsApp Floating Button */}
             <a
-                href="https://wa.me/234XXXXXXXXXX"
+                href="https://wa.me/2348089299201"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="fixed bottom-8 right-8 z-50 bg-green-500 text-white p-4 rounded-2xl shadow-xl hover:bg-green-600 hover:scale-110 hover:-rotate-6 transition-all duration-300"

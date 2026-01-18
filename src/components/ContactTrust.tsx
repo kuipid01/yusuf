@@ -157,7 +157,7 @@ export default function ContactTrust() {
                 </div>
 
                 {/* Contact Section */}
-                <div className="border-t pt-20">
+                <section id="contact" className="border-t pt-20">
                     <div className="text-center mb-12">
                         <h2 className="text-4xl md:text-5xl font-bold mb-4">
                             Get in Touch
@@ -217,7 +217,7 @@ export default function ContactTrust() {
                             ))}
                         </div>
                     </div>
-                </div>
+                </section>
             </div>
         </section>
     );

@@ -32,12 +32,12 @@ const Header: React.FC = () => {
                     </nav>
 
                     {/* CTA Button */}
-                    <button className="bg-linear-to-r from-blue-600 to-red-600 text-white px-6 py-3 rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2">
+                    {/* <button className="bg-linear-to-r from-blue-600 to-red-600 text-white px-6 py-3 rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center gap-2">
                         BOOKING NOW
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                         </svg>
-                    </button>
+                    </button> */}
 
                     {/* Mobile Menu Button */}
                     <button className="md:hidden p-2">

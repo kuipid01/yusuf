@@ -19,7 +19,7 @@ const packages: Package[] = [
         title: "Premium Hajj Experience",
         description: "Fulfill your Hajj obligations with Al-Yusuff's complete travel support and experienced guides.",
         price: "₦8,500,000.00",
-        image: "https://images.unsplash.com/photo-1591604466107-ec97de577aff?q=80&w=800&auto=format&fit=crop",
+        image: "/hajj.jpg",
         features: [
             "Visa & Document Processing",
             "Flight & Ground Transport",
