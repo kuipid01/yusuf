@@ -1,15 +1,9 @@
 import React from 'react';
 
-import TrustBadge from './TrustBadge';
 
 const HeroSection: React.FC = () => {
     // Placeholder avatars
-    const clientAvatars = [
-        'https://i.pravatar.cc/150?img=1',
-        'https://i.pravatar.cc/150?img=2',
-        'https://i.pravatar.cc/150?img=3',
-        'https://i.pravatar.cc/150?img=4',
-    ];
+
 
     return (
         <section id="home" className="min-h-screen pt-24 pb-12 bg-linear-to-br from-blue-50 via-white to-blue-50/40 relative overflow-hidden">
