@@ -47,7 +47,7 @@ export default function ContactTrust() {
         { name: 'IATA', logo: '/logos/iata.png' },
         { name: 'NANTA', logo: '/logos/nanta.jpg' },
         { name: 'AHUON', logo: '/logos/ahuon.png' },
-        { name: 'NCIA', logo: '/logos/ncia.png' },
+        { name: 'NCAA', logo: '/logos/ncaa.jpg' },
         { name: 'NAHCON', logo: '/logos/nahcon.jpg' },
     ];
 

@@ -25,7 +25,7 @@ const AboutSection: React.FC = () => {
                             />
 
                             {/* Floating Badge */}
-                            <div className="absolute top-8 right-8 bg-white rounded-2xl p-4 shadow-xl flex items-center gap-3 animate-bounce-slow">
+                            <div className="hidden lg:absolute top-8 right-8 bg-white rounded-2xl p-4 shadow-xl lg:flex items-center gap-3 animate-bounce-slow">
                                 <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center">
                                     <span className="text-white text-xs font-bold">AY</span>
                                 </div>
@@ -35,16 +35,7 @@ const AboutSection: React.FC = () => {
                                 </div>
                             </div>
 
-                            {/* Bottom Card */}
-                            <div className="absolute bottom-8 left-8 bg-white rounded-2xl p-4 shadow-xl flex items-center gap-3 transform translate-y-4 hover:translate-y-0 transition-transform">
-                                <div className="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center overflow-hidden">
-                                    <img src="/ceo.jpg" alt="Avatar" className="w-full h-full object-cover" />
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-gray-900 text-sm">Yusuf A.</h4>
-                                    <p className="text-gray-500 text-xs">Managing Director</p>
-                                </div>
-                            </div>
+
                         </div>
 
                         {/* Background Decorative Element */}
