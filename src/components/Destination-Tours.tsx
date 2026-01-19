@@ -137,7 +137,13 @@ export default function DestinationsTours() {
                                 </div>
 
                                 {/* CTA Button */}
-                                <button className="w-full px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-semibold rounded-lg hover:from-emerald-600 hover:to-teal-600 transition-all duration-300 transform hover:scale-105">
+                                <button
+                                    onClick={() => {
+                                        const text = `Hello, I'm interested in a tour to ${destination.name}. Please provide more details.`;
+                                        const url = `https://wa.me/2348089299201?text=${encodeURIComponent(text)}`;
+                                        window.open(url, '_blank');
+                                    }}
+                                    className="w-full px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-semibold rounded-lg hover:from-emerald-600 hover:to-teal-600 transition-all duration-300 transform hover:scale-105">
                                     Explore Destination
                                 </button>
                             </div>
@@ -174,7 +180,13 @@ export default function DestinationsTours() {
                             <p className="text-slate-300 mb-2">Ready to explore these amazing destinations?</p>
                             <h4 className="text-2xl font-bold">Start Your Journey Today</h4>
                         </div>
-                        <button className="px-8 py-3 bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-900 font-bold rounded-lg hover:from-emerald-300 hover:to-teal-300 transition-all duration-300 transform hover:scale-105 whitespace-nowrap">
+                        <button
+                            onClick={() => {
+                                const text = `Hello, I'm interested in planning a trip. Please provide more details.`;
+                                const url = `https://wa.me/2348089299201?text=${encodeURIComponent(text)}`;
+                                window.open(url, '_blank');
+                            }}
+                            className="px-8 py-3 bg-gradient-to-r from-emerald-400 to-teal-400 text-slate-900 font-bold rounded-lg hover:from-emerald-300 hover:to-teal-300 transition-all duration-300 transform hover:scale-105 whitespace-nowrap">
                             Plan Your Trip
                         </button>
                     </div>

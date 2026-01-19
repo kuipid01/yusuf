@@ -116,8 +116,14 @@ const RamadanPlanCard: React.FC<{ plan: RamadanPlan }> = ({ plan }) => {
                 </div>
             </div>
 
-            <button className={`w-full py-4 rounded-xl font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 transition-all mb-8 relative z-10 hover:scale-105 active:scale-95 ${'bg-white text-slate-900 hover:bg-purple-50'
-                }`}>
+            <button
+                onClick={() => {
+                    const text = `Hello, I'm interested in booking the ${plan.title} (Ramadan 2026). Please provide more details.`;
+                    const url = `https://wa.me/2348089299201?text=${encodeURIComponent(text)}`;
+                    window.open(url, '_blank');
+                }}
+                className={`w-full py-4 rounded-xl font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 transition-all mb-8 relative z-10 hover:scale-105 active:scale-95 ${'bg-white text-slate-900 hover:bg-purple-50'
+                    }`}>
                 Book Ramadan
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7-7 7" />

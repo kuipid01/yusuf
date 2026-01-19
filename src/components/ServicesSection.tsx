@@ -58,7 +58,13 @@ const ServicesSection: React.FC = () => {
                                     {service.description}
                                 </p>
                                 <div className="pt-4 flex items-center justify-between">
-                                    <button className="text-blue-600 font-black text-xs uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">
+                                    <button
+                                        onClick={() => {
+                                            const text = `Hello, I'm interested in ${service.title}. Please provide more details.`;
+                                            const url = `https://wa.me/2348089299201?text=${encodeURIComponent(text)}`;
+                                            window.open(url, '_blank');
+                                        }}
+                                        className="text-blue-600 font-black text-xs uppercase tracking-widest flex items-center gap-2 group-hover:gap-4 transition-all">
                                         Read More
                                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />

@@ -93,7 +93,13 @@ const PackageCard: React.FC<{ pkg: Package, index: number }> = ({ pkg, index }) 
                         <p className="text-blue-600 text-[10px] font-black uppercase tracking-widest mb-1">Pricing Start From</p>
                         <p className="text-3xl font-black text-gray-900">{pkg.price}</p>
                     </div>
-                    <button className="bg-blue-600 text-white px-10 py-4 rounded-2xl font-black text-xs hover:bg-blue-700 shadow-xl shadow-blue-100 transition-all flex items-center justify-center gap-3 group uppercase tracking-widest">
+                    <button
+                        onClick={() => {
+                            const text = `Hello, I'm interested in booking the ${pkg.title}. Please provide more details.`;
+                            const url = `https://wa.me/2348089299201?text=${encodeURIComponent(text)}`;
+                            window.open(url, '_blank');
+                        }}
+                        className="bg-blue-600 text-white px-10 py-4 rounded-2xl font-black text-xs hover:bg-blue-700 shadow-xl shadow-blue-100 transition-all flex items-center justify-center gap-3 group uppercase tracking-widest">
                         BOOK NOW
                         <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
