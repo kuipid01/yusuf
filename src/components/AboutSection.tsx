@@ -17,7 +17,7 @@ const AboutSection: React.FC = () => {
 
                     {/* Left Side: Creative Image Composition */}
                     <div className="relative">
-                        <div className="relative rounded-4xl overflow-hidden shadow-2xl transform -rotate-2 hover:rotate-0 transition-transform duration-500">
+                        <div className="relative rounded-4xl overflow-hidden shadow-2xl transform  transition-transform duration-500">
                             <img
                                 src="/ceo2.jpg"
                                 alt="About AL-YUSUFF"
