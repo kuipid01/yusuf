@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { BookingModal } from './BookingModal';
 
 interface Package {
     id: number;
@@ -18,7 +19,7 @@ const packages: Package[] = [
         badge: "HAJJ PACKAGE",
         title: "Premium Hajj Experience",
         description: "Fulfill your Hajj obligations with Al-Yusuff's complete travel support and experienced guides.",
-        price: "₦8,500,000.00",
+        price: "8,500,000",
         image: "/hajj.jpg",
         features: [
             "Visa & Document Processing",
@@ -35,7 +36,7 @@ const packages: Package[] = [
         badge: "UMRAH PACKAGE",
         title: "Seamless Umrah Pilgrimage",
         description: "Comfortable accommodation near the Haram and flexible Pay-Small-Small payment options.",
-        price: "₦4,500,000.00",
+        price: "4,500,000",
         image: "https://images.unsplash.com/photo-1565019054316-0158df8a28e4?q=80&w=800&auto=format&fit=crop",
         features: [
             "Flight Bookings & Transfers",
@@ -48,11 +49,11 @@ const packages: Package[] = [
     }
 ];
 
-const PackageCard: React.FC<{ pkg: Package, index: number }> = ({ pkg, index }) => {
+const PackageCard: React.FC<{ pkg: Package, index: number; onBook: (pkg: Package) => void }> = ({ pkg, index, onBook }) => {
     const isEven = index % 2 === 1;
 
     return (
-        <div className={`flex flex-col ${isEven ? 'lg:flex-row-reverse' : 'lg:flex-row'} bg-blue-50/20 rounded-[2.5rem] overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-blue-100/30`}>
+        <div className={`flex flex-col ${isEven ? 'lg:flex-row-reverse' : 'lg:flex-row'} bg-blue-50/20 rounded-4xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 border border-blue-100/30`}>
             {/* Image Section */}
             <div className="lg:w-1/2 relative min-h-[400px]">
                 <img
@@ -77,7 +78,7 @@ const PackageCard: React.FC<{ pkg: Package, index: number }> = ({ pkg, index }) 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8">
                     {pkg.features.map((feature, i) => (
                         <div key={i} className="flex items-center gap-3 text-[11px] font-bold text-gray-700 uppercase tracking-tight">
-                            <div className="w-5 h-5 rounded-lg bg-blue-100 flex items-center justify-center flex-shrink-0">
+                            <div className="w-5 h-5 rounded-lg bg-blue-100 flex items-center justify-center shrink-0">
                                 <svg className="w-3 h-3 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
                                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                                 </svg>
@@ -91,14 +92,10 @@ const PackageCard: React.FC<{ pkg: Package, index: number }> = ({ pkg, index }) 
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-8 pt-8 border-t border-blue-100/50">
                     <div>
                         <p className="text-blue-600 text-[10px] font-black uppercase tracking-widest mb-1">Pricing Start From</p>
-                        <p className="text-3xl font-black text-gray-900">{pkg.price}</p>
+                        <p className="text-3xl font-black text-gray-900">₦{pkg.price}</p>
                     </div>
                     <button
-                        onClick={() => {
-                            const text = `Hello, I'm interested in booking the ${pkg.title}. Please provide more details.`;
-                            const url = `https://wa.me/2348089299201?text=${encodeURIComponent(text)}`;
-                            window.open(url, '_blank');
-                        }}
+                        onClick={() => onBook(pkg)}
                         className="bg-blue-600 text-white px-10 py-4 rounded-2xl font-black text-xs hover:bg-blue-700 shadow-xl shadow-blue-100 transition-all flex items-center justify-center gap-3 group uppercase tracking-widest">
                         BOOK NOW
                         <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -112,6 +109,12 @@ const PackageCard: React.FC<{ pkg: Package, index: number }> = ({ pkg, index }) 
 };
 
 const PackagesSection: React.FC = () => {
+    const [selectedPackage, setSelectedPackage] = useState<Package | null>(null);
+
+    const parsePrice = (priceStr: string) => {
+        return parseInt(priceStr.replace(/,/g, '').replace('₦', ''));
+    };
+
     return (
         <section id="packages" className="py-24 bg-white">
             <div className="container mx-auto px-6">
@@ -132,10 +135,24 @@ const PackagesSection: React.FC = () => {
                 {/* Packages List */}
                 <div className="space-y-16">
                     {packages.map((pkg, index) => (
-                        <PackageCard key={pkg.id} pkg={pkg} index={index} />
+                        <PackageCard key={pkg.id} pkg={pkg} index={index} onBook={(p) => setSelectedPackage(p)} />
                     ))}
                 </div>
             </div>
+
+            {selectedPackage && (
+                <BookingModal
+                    isOpen={!!selectedPackage}
+                    onClose={() => setSelectedPackage(null)}
+                    packageTitle={selectedPackage.title}
+                    packageDescription={selectedPackage.description}
+                    pricingOptions={[
+                        { label: 'Standard Package', price: parsePrice(selectedPackage.price), displayPrice: selectedPackage.price }
+                    ]}
+                    onSuccess={(ref) => alert('Payment Successful: ' + ref)}
+                    onFailure={(msg) => alert('Payment Failed: ' + msg)}
+                />
+            )}
         </section>
     );
 };

@@ -139,8 +139,8 @@ export default function DestinationsTours() {
                                 {/* CTA Button */}
                                 <button
                                     onClick={() => {
-                                        const text = `Hello, I'm interested in a tour to ${destination.name}. Please provide more details.`;
-                                        const url = `https://wa.me/2348089299201?text=${encodeURIComponent(text)}`;
+                                        const query = encodeURIComponent(destination.name);
+                                        const url = `https://www.google.com/search?q=${query}`;
                                         window.open(url, '_blank');
                                     }}
                                     className="w-full px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-semibold rounded-lg hover:from-emerald-600 hover:to-teal-600 transition-all duration-300 transform hover:scale-105">

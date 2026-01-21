@@ -1,4 +1,6 @@
-import React from 'react';
+'use client'
+import React, { useState } from 'react';
+import { BookingModal } from './BookingModal';
 
 interface Plan {
     id: number;
@@ -17,8 +19,8 @@ const plans: Plan[] = [
         id: 1,
         title: "Basic Package",
         description: "Affordable spiritual journey with shared accommodation and essential services.",
-        price: "3,999,000 (4/Room)",
-        price2: "4,350,000 (2/Room)",
+        price: "3,999,000",
+        price2: "4,350,000",
         icon: "🌙",
         buttonVariant: 'solid',
         features: [
@@ -35,8 +37,8 @@ const plans: Plan[] = [
         id: 2,
         title: "Standard Package",
         description: "Balanced comfort with improved accommodation options.",
-        price: "4,450,000 (4/Room)",
-        price2: "4,700,000 (2/Room)",
+        price: "4,450,000",
+        price2: "4,700,000",
         icon: "🕌",
         isPopular: true,
         buttonVariant: 'outline',
@@ -54,8 +56,8 @@ const plans: Plan[] = [
         id: 3,
         title: "Gold Package",
         description: "Premium 5-Star experience for maximum comfort and proximity.",
-        price: "5,450,000 (4/Room)",
-        price2: "6,200,000 (2/Room)",
+        price: "5,450,000",
+        price2: "6,200,000",
         icon: "🌟",
         buttonVariant: 'solid',
         features: [
@@ -70,7 +72,7 @@ const plans: Plan[] = [
     }
 ];
 
-const PlanCard: React.FC<{ plan: Plan }> = ({ plan }) => {
+const PlanCard: React.FC<{ plan: Plan; onBook: (plan: Plan) => void }> = ({ plan, onBook }) => {
     return (
         <div className={`bg-white rounded-[2rem] p-8 shadow-xl shadow-blue-900/5 hover:shadow-blue-900/10 transition-all duration-500 border-2 ${plan.isPopular ? 'border-blue-600 scale-105 z-10' : 'border-transparent'} flex flex-col`}>
             {/* Icon Area */}
@@ -90,7 +92,7 @@ const PlanCard: React.FC<{ plan: Plan }> = ({ plan }) => {
                     <p className="text-blue-600 text-[10px] font-black uppercase tracking-widest mb-1">Price (4 in a room)</p>
                     <div className="flex items-baseline gap-1">
                         <span className="text-xl font-bold text-gray-900">₦</span>
-                        <span className="text-2xl font-black text-gray-900">{plan.price.split(' ')[0]}</span>
+                        <span className="text-2xl font-black text-gray-900">{plan.price}</span>
                     </div>
                 </div>
                 {plan.price2 && (
@@ -98,18 +100,14 @@ const PlanCard: React.FC<{ plan: Plan }> = ({ plan }) => {
                         <p className="text-blue-600 text-[10px] font-black uppercase tracking-widest mb-1">Price (2 in a room)</p>
                         <div className="flex items-baseline gap-1">
                             <span className="text-xl font-bold text-gray-900">₦</span>
-                            <span className="text-2xl font-black text-gray-900">{plan.price2.split(' ')[0]}</span>
+                            <span className="text-2xl font-black text-gray-900">{plan.price2}</span>
                         </div>
                     </div>
                 )}
             </div>
 
             <button
-                onClick={() => {
-                    const text = `Hello, I'm interested in booking the ${plan.title} (Umrah 2026). Please provide more details.`;
-                    const url = `https://wa.me/2348089299201?text=${encodeURIComponent(text)}`;
-                    window.open(url, '_blank');
-                }}
+                onClick={() => onBook(plan)}
                 className={`w-full py-5 rounded-2xl font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 transition-all mb-8 ${plan.buttonVariant === 'solid'
                     ? 'bg-blue-600 text-white hover:bg-blue-700 shadow-xl shadow-blue-100'
                     : 'border-2 border-blue-600 text-blue-600 hover:bg-blue-50'
@@ -138,6 +136,12 @@ const PlanCard: React.FC<{ plan: Plan }> = ({ plan }) => {
 };
 
 const UmrahPlansSection: React.FC = () => {
+    const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
+
+    const parsePrice = (priceStr: string) => {
+        return parseInt(priceStr.replace(/,/g, ''));
+    };
+
     return (
         <section id="packages" className="py-24 bg-blue-50/20">
             <div className="container mx-auto px-6">
@@ -158,10 +162,25 @@ const UmrahPlansSection: React.FC = () => {
                 {/* Plans Grid */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10 items-stretch">
                     {plans.map((plan) => (
-                        <PlanCard key={plan.id} plan={plan} />
+                        <PlanCard key={plan.id} plan={plan} onBook={(p) => setSelectedPlan(p)} />
                     ))}
                 </div>
             </div>
+
+            {selectedPlan && (
+                <BookingModal
+                    isOpen={!!selectedPlan}
+                    onClose={() => setSelectedPlan(null)}
+                    packageTitle={`${selectedPlan.title} - Umrah 2026`}
+                    packageDescription={selectedPlan.description}
+                    pricingOptions={[
+                        { label: '4 in a Room', price: parsePrice(selectedPlan.price), displayPrice: selectedPlan.price },
+                        ...(selectedPlan.price2 ? [{ label: '2 in a Room', price: parsePrice(selectedPlan.price2), displayPrice: selectedPlan.price2 }] : [])
+                    ]}
+                    onSuccess={(ref) => alert('Payment Successful: ' + ref)}
+                    onFailure={(msg) => alert('Payment Failed: ' + msg)}
+                />
+            )}
         </section>
     );
 };

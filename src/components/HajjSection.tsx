@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { BookingModal } from './BookingModal';
 
 interface HajjPlan {
     id: number;
@@ -117,9 +118,9 @@ const hajjPlans: HajjPlan[] = [
     }
 ];
 
-const HajjPlanCard: React.FC<{ plan: HajjPlan }> = ({ plan }) => {
+const HajjPlanCard: React.FC<{ plan: HajjPlan; onSelect: (plan: HajjPlan) => void }> = ({ plan, onSelect }) => {
     return (
-        <div className={`bg-white rounded-[2rem] p-8 shadow-xl shadow-amber-900/5 hover:shadow-amber-900/10 transition-all duration-500 border-2 ${plan.isPopular ? 'border-amber-500 scale-105 z-10' : 'border-transparent'} flex flex-col`}>
+        <div className={`bg-white rounded-4xl p-8 shadow-xl shadow-amber-900/5 hover:shadow-amber-900/10 transition-all duration-500 border-2 ${plan.isPopular ? 'border-amber-500 scale-105 z-10' : 'border-transparent'} flex flex-col`}>
             {/* Icon Area */}
             <div className="mb-8">
                 <div className="w-16 h-16 bg-amber-500 rounded-2xl flex items-center justify-center text-3xl shadow-lg shadow-amber-100 text-white">
@@ -151,11 +152,7 @@ const HajjPlanCard: React.FC<{ plan: HajjPlan }> = ({ plan }) => {
             </div>
 
             <button
-                onClick={() => {
-                    const text = `Hello, I'm interested in booking the ${plan.title} (Hajj 2026). Please provide more details.`;
-                    const url = `https://wa.me/2348089299201?text=${encodeURIComponent(text)}`;
-                    window.open(url, '_blank');
-                }}
+                onClick={() => onSelect(plan)}
                 className={`w-full py-5 rounded-2xl font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 transition-all mb-8 ${plan.buttonVariant === 'solid'
                     ? 'bg-amber-600 text-white hover:bg-amber-700 shadow-xl shadow-amber-100'
                     : 'border-2 border-amber-600 text-amber-600 hover:bg-amber-50'
@@ -170,7 +167,7 @@ const HajjPlanCard: React.FC<{ plan: HajjPlan }> = ({ plan }) => {
             <div className="space-y-4 mt-auto">
                 {plan.features.map((feature, index) => (
                     <div key={index} className="flex items-center gap-3 text-[11px] font-bold text-gray-600 uppercase tracking-tight">
-                        <div className="flex-shrink-0 w-5 h-5 bg-amber-50 rounded-lg flex items-center justify-center">
+                        <div className="shrink-0 w-5 h-5 bg-amber-50 rounded-lg flex items-center justify-center">
                             <svg className="w-3 h-3 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                             </svg>
@@ -184,6 +181,12 @@ const HajjPlanCard: React.FC<{ plan: HajjPlan }> = ({ plan }) => {
 };
 
 const HajjSection: React.FC = () => {
+    const [selectedPlan, setSelectedPlan] = useState<HajjPlan | null>(null);
+
+    const parsePrice = (priceStr: string) => {
+        return parseInt(priceStr.replace(/,/g, ''));
+    };
+
     return (
         <section className="py-24 bg-amber-50/30">
             <div className="container mx-auto px-6">
@@ -221,10 +224,25 @@ const HajjSection: React.FC = () => {
                 {/* Plans Grid */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8 items-start justify-center">
                     {hajjPlans.map((plan) => (
-                        <HajjPlanCard key={plan.id} plan={plan} />
+                        <HajjPlanCard key={plan.id} plan={plan} onSelect={(p) => setSelectedPlan(p)} />
                     ))}
                 </div>
             </div>
+
+            {selectedPlan && (
+                <BookingModal
+                    isOpen={!!selectedPlan}
+                    onClose={() => setSelectedPlan(null)}
+                    packageTitle={`${selectedPlan.title} - Hajj 2026`}
+                    packageDescription={`${selectedPlan.subtitle}: ${selectedPlan.description}`}
+                    pricingOptions={[
+                        { label: '4 in a Room', price: parsePrice(selectedPlan.price4), displayPrice: selectedPlan.price4 },
+                        { label: '2 in a Room', price: parsePrice(selectedPlan.price2), displayPrice: selectedPlan.price2 }
+                    ]}
+                    onSuccess={(ref) => alert('Payment Successful: ' + ref)}
+                    onFailure={(msg) => alert('Payment Failed: ' + msg)}
+                />
+            )}
         </section>
     );
 };

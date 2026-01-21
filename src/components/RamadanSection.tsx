@@ -1,4 +1,6 @@
-import React from 'react';
+"use client"
+import React, { useState } from 'react';
+import { BookingModal } from './BookingModal';
 
 interface RamadanPlan {
     id: number;
@@ -70,11 +72,11 @@ const ramadanPlans: RamadanPlan[] = [
     }
 ];
 
-const RamadanPlanCard: React.FC<{ plan: RamadanPlan }> = ({ plan }) => {
+const RamadanPlanCard: React.FC<{ plan: RamadanPlan; onBook: (plan: RamadanPlan) => void }> = ({ plan, onBook }) => {
     return (
-        <div className="bg-slate-900 text-white rounded-[2rem] p-8 shadow-2xl border border-slate-700 hover:border-purple-500 transition-all duration-500 flex flex-col relative overflow-hidden group">
+        <div className="bg-slate-900 text-white rounded-4xl p-8 shadow-2xl border border-slate-700 hover:border-purple-500 transition-all duration-500 flex flex-col relative overflow-hidden group">
             {/* Background Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-slate-900 pointer-events-none group-hover:from-purple-900/40 transition-all" />
+            <div className="absolute inset-0 bg-linear-to-br from-purple-900/20 to-slate-900 pointer-events-none group-hover:from-purple-900/40 transition-all" />
 
             {/* Icon Area */}
             <div className="mb-6 relative z-10">
@@ -117,11 +119,7 @@ const RamadanPlanCard: React.FC<{ plan: RamadanPlan }> = ({ plan }) => {
             </div>
 
             <button
-                onClick={() => {
-                    const text = `Hello, I'm interested in booking the ${plan.title} (Ramadan 2026). Please provide more details.`;
-                    const url = `https://wa.me/2348089299201?text=${encodeURIComponent(text)}`;
-                    window.open(url, '_blank');
-                }}
+                onClick={() => onBook(plan)}
                 className={`w-full py-4 rounded-xl font-black text-[10px] uppercase tracking-widest flex items-center justify-center gap-2 transition-all mb-8 relative z-10 hover:scale-105 active:scale-95 ${'bg-white text-slate-900 hover:bg-purple-50'
                     }`}>
                 Book Ramadan
@@ -134,7 +132,7 @@ const RamadanPlanCard: React.FC<{ plan: RamadanPlan }> = ({ plan }) => {
             <div className="space-y-3 mt-auto relative z-10 border-t border-white/10 pt-6">
                 {plan.features.map((feature, index) => (
                     <div key={index} className="flex items-center gap-3 text-[11px] font-bold text-slate-400 uppercase tracking-tight">
-                        <div className="flex-shrink-0 w-4 h-4 rounded-full bg-purple-500/20 flex items-center justify-center">
+                        <div className="shrink-0 w-4 h-4 rounded-full bg-purple-500/20 flex items-center justify-center">
                             <svg className="w-2.5 h-2.5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                             </svg>
@@ -148,6 +146,12 @@ const RamadanPlanCard: React.FC<{ plan: RamadanPlan }> = ({ plan }) => {
 };
 
 const RamadanSection: React.FC = () => {
+    const [selectedPlan, setSelectedPlan] = useState<RamadanPlan | null>(null);
+
+    const parsePrice = (priceStr: string) => {
+        return parseInt(priceStr.replace(/,/g, ''));
+    };
+
     return (
         <section className="py-24 bg-slate-950">
             <div className="container mx-auto px-6">
@@ -168,10 +172,26 @@ const RamadanSection: React.FC = () => {
                 {/* Plans Grid */}
                 <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch">
                     {ramadanPlans.map((plan) => (
-                        <RamadanPlanCard key={plan.id} plan={plan} />
+                        <RamadanPlanCard key={plan.id} plan={plan} onBook={(p) => setSelectedPlan(p)} />
                     ))}
                 </div>
             </div>
+
+            {selectedPlan && (
+                <BookingModal
+                    isOpen={!!selectedPlan}
+                    onClose={() => setSelectedPlan(null)}
+                    packageTitle={`${selectedPlan.title} - Ramadan 2026`}
+                    packageDescription={selectedPlan.description}
+                    pricingOptions={[
+                        { label: '4 in a Room', price: parsePrice(selectedPlan.price4), displayPrice: selectedPlan.price4 },
+                        { label: '3 in a Room', price: parsePrice(selectedPlan.price3), displayPrice: selectedPlan.price3 },
+                        { label: '2 in a Room', price: parsePrice(selectedPlan.price2), displayPrice: selectedPlan.price2 }
+                    ]}
+                    onSuccess={(ref) => alert('Payment Successful: ' + ref)}
+                    onFailure={(msg) => alert('Payment Failed: ' + msg)}
+                />
+            )}
         </section>
     );
 };
