@@ -142,8 +142,8 @@ const Footer: React.FC = () => {
                             <div className="flex gap-4 items-start">
                                 <Phone className="w-5 h-5 text-blue-600 shrink-0" />
                                 <div className="space-y-1">
-                                    <p className="font-bold">08089299201 (WhatsApp)</p>
-                                    <p className="font-bold">08035124441 (WhatsApp)</p>
+                                    <p className="font-bold">09164543000 (WhatsApp)</p>
+                                    <p className="font-bold">08132166223 (WhatsApp)</p>
                                     <p className="font-bold">08186407509</p>
                                 </div>
                             </div>

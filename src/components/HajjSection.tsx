@@ -18,7 +18,7 @@ const hajjPlans: HajjPlan[] = [
     {
         id: 1,
         title: "Basic 1 Package",
-        subtitle: "Tent D - 1 Star Hotel",
+        subtitle: "Tent D - 2 Star Hotel",
         description: "Affordable Hajj experience with essential amenities.",
         price4: "8,900,000",
         price2: "10,704,000",
@@ -27,7 +27,7 @@ const hajjPlans: HajjPlan[] = [
         features: [
             "Hajj Visa",
             "Economy Flight",
-            "1-Star Hotel",
+            "2-Star Hotel",
             "Breakfast & Dinner",
             "Shared Transport",
             "Historical Visits",

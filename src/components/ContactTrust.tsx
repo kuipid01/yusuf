@@ -171,8 +171,8 @@ export default function ContactTrust() {
                     <div className="grid md:grid-cols-2 gap-8 mb-12">
                         <div className="p-8 rounded-lg border bg-blue-50">
                             <Phone className="text-blue-600 mb-3" />
-                            <a href="tel:+2348035124441" className="block font-bold">08035124441 (Whatsapp)</a>
-                            <a href="tel:+2348089299201" className="block font-bold">08089299201 (Whatsapp)</a>
+                            <a href="tel:+2349164543000" className="block font-bold">09164543000 (WhatsApp)</a>
+                            <a href="tel:+2348132166223" className="block font-bold">08132166223 (WhatsApp)</a>
                             <a href="tel:+2348186407509" className="block font-bold">08186407509</a>
                         </div>
 

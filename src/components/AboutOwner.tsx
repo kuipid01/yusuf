@@ -50,7 +50,7 @@ export default function AboutOwner() {
                         <div className="relative w-80 h-96 rounded-2xl overflow-hidden shadow-2xl border-8 border-white">
                             <img
                                 src="/ceo.jpg"
-                                alt="Alhaji Abdul Mojeed Oladele Yusuff - CEO"
+                                alt="Mojeed Oladele Yusuff - CEO"
                                 className="object-cover"
                             />
                             <div className="absolute inset-0 bg-linear-to-t from-blue-50 to-transparent" />
@@ -61,7 +61,7 @@ export default function AboutOwner() {
                     <div className="space-y-6">
                         <div>
                             <h3 className="text-4xl font-bold text-slate-900 mb-2">
-                                Alhaji Abdul Mojeed
+                                Mojeed
                                 <br />
                                 <span className="text-xl md:text-2xl text-blue-600">
                                     Oladele Yusuff
@@ -77,7 +77,7 @@ export default function AboutOwner() {
 
                         <p className="text-slate-700 leading-relaxed text-lg">
                             With over a decade of expertise in the travel and pilgrimage industry,
-                            Alhaji Mojeed Oladele Yusuff founded and leads Al-Yusuff International
+                            Mojeed Oladele Yusuff founded and leads Al-Yusuff International
                             Travels and Tours Ltd with a mission to provide exceptional Hajj and
                             Umrah experiences to Muslims worldwide.
                         </p>
@@ -133,7 +133,7 @@ export default function AboutOwner() {
                 <div className="mt-12 bg-linear-to-r from-blue-600 to-blue-700 rounded-2xl p-8 md:p-12 text-white text-center">
                     <h4 className="text-2xl font-bold mb-4">Our Commitment</h4>
                     <p className="text-lg leading-relaxed max-w-2xl mx-auto">
-                        Under Alhaji Mojeed's leadership, Al-Yusuff International Travels delivers
+                        Under Mojeed's leadership, Al-Yusuff International Travels delivers
                         comprehensive logistics and travel support, combining professional expertise
                         with deep respect for the spiritual significance of every Hajj and Umrah journey.
                     </p>
